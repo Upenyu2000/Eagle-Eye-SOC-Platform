@@ -1,0 +1,18 @@
+sequenceDiagram
+  actor Analyst
+  participant UI as PySide6 Workspace
+  participant Loader as Telemetry Loader
+  participant Analyzer as Detection Service
+  participant DB as SQLite Database
+
+  Analyst->>UI: Import JSON / NDJSON / CSV
+  UI->>Loader: load_records(path)
+  Loader-->>UI: Normalised records
+  Analyst->>UI: Analyse telemetry
+  UI->>Analyzer: analyse(records, thresholds)
+  Analyzer-->>UI: AnalysisResult(summary, findings)
+  UI-->>Analyst: Display summary and findings
+  Analyst->>UI: Create incident from selected finding
+  UI->>DB: add_incident(Incident)
+  DB-->>UI: Incident ID
+  UI-->>Analyst: Confirm incident created

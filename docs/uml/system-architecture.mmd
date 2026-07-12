@@ -1,0 +1,33 @@
+flowchart LR
+  Analyst[Security Analyst] --> UI[PySide6 Desktop UI]
+  UI --> Dashboard[Command Centre]
+  UI --> SIEM[SIEM Detection]
+  UI --> AD[Active Directory Defence]
+  UI --> Phishing[Phishing Analysis]
+  UI --> Azure[Azure Security Monitoring]
+  UI --> SOAR[SOC Automation]
+  UI --> Settings[Settings and Integrations]
+
+  SIEM --> SIEMService[SIEM Analysis Service]
+  AD --> ADService[Active Directory Analysis Service]
+  Phishing --> PhishingService[Email and Indicator Analysis]
+  Azure --> AzureService[Azure Activity Analysis and Remediation]
+  SOAR --> AutomationService[Scoring and Case Automation]
+
+  SIEMService --> DB[(SQLite Incident Store)]
+  ADService --> DB
+  PhishingService --> DB
+  AzureService --> DB
+  AutomationService --> DB
+  Dashboard --> DB
+
+  Settings --> Secrets[OS Keyring / Windows Credential Manager]
+  PhishingService --> VirusTotal[VirusTotal Lookup]
+  PhishingService --> PhishTank[PhishTank Lookup]
+  AzureService --> AzureCLI[Azure CLI]
+  AutomationService --> Shuffle[Shuffle]
+  AutomationService --> TheHive[TheHive]
+
+  Demo[Safe Synthetic Demo Data] --> SIEM
+  Demo --> AD
+  Demo --> Azure
