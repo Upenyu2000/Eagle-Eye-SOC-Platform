@@ -73,7 +73,7 @@ def analyse_message(headers_text: str, body_text: str = "") -> tuple[AnalysisRes
                 title="Email authentication control failure",
                 severity="high" if "dmarc" in failed_controls else "medium",
                 description=f"Authentication-Results reports failure for: {', '.join(failed_controls)}.",
-                evidence={"authentication_results": auth},
+                evidence={"authentication_results": auth_results},
                 recommendation="Validate alignment and confirm whether the sending infrastructure is authorised.",
             )
         )
@@ -114,7 +114,7 @@ def analyse_message(headers_text: str, body_text: str = "") -> tuple[AnalysisRes
                 title="Message contains clickable URLs",
                 severity="medium",
                 description=f"The message contains {len(urls)} URL artefact(s).",
-                evidence={"urls": [defa™Â¹(v) for v in urls]},
+                evidence={"urls": [defang(value) for value in urls]},
                 recommendation="Enrich links without opening them in a normal browser session.",
             )
         )
