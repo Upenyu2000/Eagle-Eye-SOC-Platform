@@ -1,0 +1,12 @@
+AzureActivity
+| where TimeGenerated > ago(30m)
+| where ResourceProviderValue =~ "MICROSOFT.STORAGE"
+| where OperationNameValue has_any (
+    "MICROSOFT.STORAGE/STORAGEACCOUNTS/WRITE",
+    "MICROSOFT.STORAGE/STORAGEACCOUNTS/BLOBSERVICES/CONTAINERS/WRITE"
+)
+| extend PropertiesJson = parse_json(Properties)
+| extend RequestBody = tostring(PropertiesJson.requestbody)
+| where RequestBody has_any ("allowBlobPublicAccess", "\"publicAccess\":\"Blob\"", "\"publicAccess\":\"Container\"")
+| project TimeGenerated, Caller, CallerIpAddress, OperationNameValue, ActivityStatusValue, ResourceGroup, ResourceId, CorrelationId, RequestBody
+| order by TimeGenerated desc

@@ -1,0 +1,10 @@
+[
+  {"TimeCreated":"2026-07-12T12:00:00Z","EventID":"4769","TargetUserName":"alice","ServiceName":"HTTP/web.lab.local","IpAddress":"10.10.10.30","TicketEncryptionType":"0x17"},
+  {"TimeCreated":"2026-07-12T12:00:20Z","EventID":"4769","TargetUserName":"alice","ServiceName":"MSSQLSvc/sql.lab.local","IpAddress":"10.10.10.30","TicketEncryptionType":"0x17"},
+  {"TimeCreated":"2026-07-12T12:00:40Z","EventID":"4769","TargetUserName":"alice","ServiceName":"CIFS/files.lab.local","IpAddress":"10.10.10.30","TicketEncryptionType":"0x17"},
+  {"TimeCreated":"2026-07-12T12:01:00Z","EventID":"4769","TargetUserName":"alice","ServiceName":"LDAP/dc01.lab.local","IpAddress":"10.10.10.30","TicketEncryptionType":"0x12"},
+  {"TimeCreated":"2026-07-12T12:01:20Z","EventID":"4769","TargetUserName":"alice","ServiceName":"HOST/ws01.lab.local","IpAddress":"10.10.10.30","TicketEncryptionType":"0x12"},
+  {"TimeCreated":"2026-07-12T12:02:00Z","EventID":"10","SourceImage":"C:\\LabTools\\training-tool.exe","TargetImage":"C:\\Windows\\System32\\lsass.exe","GrantedAccess":"0x1010"},
+  {"TimeCreated":"2026-07-12T12:03:00Z","EventID":"4624","LogonType":"3","AuthenticationPackageName":"NTLM","TargetLogonId":"0x4f3a2","IpAddress":"10.10.10.20","TargetUserName":"labadmin"},
+  {"TimeCreated":"2026-07-12T12:03:02Z","EventID":"4672","SubjectLogonId":"0x4f3a2","SubjectUserName":"labadmin"}
+]

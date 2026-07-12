@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Sysmon schemaversion="4.90">
+  <HashAlgorithms>SHA256,IMPHASH</HashAlgorithms>
+  <CheckRevocation>true</CheckRevocation>
+  <EventFiltering>
+    <ProcessCreate onmatch="exclude"><Image condition="is">C:\Windows\System32\conhost.exe</Image></ProcessCreate>
+    <NetworkConnect onmatch="include">
+      <DestinationPort condition="is">3389</DestinationPort>
+      <DestinationPort condition="is">445</DestinationPort>
+      <DestinationPort condition="is">5985</DestinationPort>
+      <DestinationPort condition="is">5986</DestinationPort>
+    </NetworkConnect>
+    <ProcessAccess onmatch="include"><TargetImage condition="end with">lsass.exe</TargetImage></ProcessAccess>
+    <FileCreate onmatch="include">
+      <TargetFilename condition="contains">\Users\Public\</TargetFilename>
+      <TargetFilename condition="contains">\Windows\Temp\</TargetFilename>
+      <TargetFilename condition="contains">\AppData\Local\Temp\</TargetFilename>
+    </FileCreate>
+    <RegistryEvent onmatch="include">
+      <TargetObject condition="contains">\CurrentVersion\Run</TargetObject>
+      <TargetObject condition="contains">\CurrentVersion\RunOnce</TargetObject>
+    </RegistryEvent>
+  </EventFiltering>
+</Sysmon>

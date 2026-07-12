@@ -1,0 +1,19 @@
+{
+  "title": "[high] Suspicious outbound connection — WS01",
+  "description": "Synthetic portfolio-lab alert enriched by Shuffle.",
+  "severity": 3,
+  "tlp": 2,
+  "pap": 2,
+  "tags": ["portfolio-lab", "shuffle", "virustotal", "automated-enrichment"],
+  "customFields": {
+    "sourceAlertId": {"string": "LAB-2026-0001"},
+    "automationScore": {"integer": 8},
+    "automationConfidence": {"string": "medium"}
+  },
+  "tasks": [
+    {"title": "Validate endpoint telemetry", "group": "investigation"},
+    {"title": "Scope related indicators", "group": "investigation"},
+    {"title": "Contain confirmed activity", "group": "response"},
+    {"title": "Document recovery and lessons learned", "group": "closure"}
+  ]
+}

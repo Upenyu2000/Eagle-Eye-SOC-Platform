@@ -1,0 +1,32 @@
+{
+  "name": "Portfolio - IOC Enrichment to TheHive",
+  "description": "Implementation blueprint. Recreate or import using the current Shuffle workflow schema.",
+  "input_contract": {
+    "required": ["alert_id", "title", "severity", "timestamp", "indicators"],
+    "indicator_types": ["domain", "ip", "url", "sha256"]
+  },
+  "secrets": ["VT_API_KEY", "THEHIVE_API_KEY", "TEAM_WEBHOOK_URL"],
+  "variables": ["THEHIVE_URL"],
+  "nodes": [
+    {"id": "webhook", "type": "trigger", "action": "receive_json"},
+    {"id": "validate", "type": "transform", "action": "validate_input_contract"},
+    {"id": "normalise", "type": "transform", "action": "deduplicate_and_validate_iocs"},
+    {"id": "vt_loop", "type": "foreach", "action": "query_virustotal_by_ioc_type"},
+    {"id": "aggregate", "type": "transform", "action": "calculate_malicious_score"},
+    {"id": "decision", "type": "condition", "expression": "malicious_score >= 6"},
+    {"id": "dedupe_case", "type": "thehive", "action": "search_case_by_alert_id"},
+    {"id": "create_case", "type": "thehive", "action": "create_case_and_observables"},
+    {"id": "notify", "type": "webhook", "action": "send_minimal_team_notification"},
+    {"id": "audit", "type": "output", "action": "record_decision_and_errors"}
+  ],
+  "decision_model": {
+    "malicious_engine_weight": 3,
+    "suspicious_engine_weight": 1,
+    "known_phishing_weight": 2,
+    "internal_high_confidence_weight": 2,
+    "create_case_threshold": 6,
+    "analyst_review_threshold": 2,
+    "api_error_verdict": "unknown"
+  },
+  "idempotency_key": "alert_id"
+}

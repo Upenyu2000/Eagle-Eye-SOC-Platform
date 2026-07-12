@@ -1,0 +1,23 @@
+<group name="windows,authentication,siem_lab,">
+  <rule id="100100" level="5">
+    <if_sid>60122</if_sid>
+    <field name="win.system.eventID">^4625$</field>
+    <description>SIEM Lab: Windows failed logon for $(win.eventdata.targetUserName) from $(win.eventdata.ipAddress)</description>
+    <group>authentication_failed,windows_failed_logon,</group>
+    <mitre><id>T1110</id></mitre>
+  </rule>
+  <rule id="100101" level="10" frequency="3" timeframe="120">
+    <if_matched_sid>100100</if_matched_sid>
+    <same_field>win.eventdata.ipAddress</same_field>
+    <description>SIEM Lab: Repeated Windows failed logons from $(win.eventdata.ipAddress)</description>
+    <group>authentication_failures,password_spray_candidate,</group>
+    <mitre><id>T1110</id><id>T1110.003</id></mitre>
+  </rule>
+  <rule id="100102" level="6">
+    <if_sid>60106</if_sid>
+    <field name="win.system.eventID">^4624$</field>
+    <field name="win.eventdata.logonType">^10$</field>
+    <description>SIEM Lab: Successful RemoteInteractive logon by $(win.eventdata.targetUserName) from $(win.eventdata.ipAddress)</description>
+    <group>authentication_success,remote_logon,</group>
+  </rule>
+</group>

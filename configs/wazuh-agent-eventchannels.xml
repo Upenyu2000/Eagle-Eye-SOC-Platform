@@ -1,0 +1,10 @@
+<!-- Insert these blocks inside the Windows agent's existing <ossec_config> element. -->
+<localfile>
+  <location>Security</location>
+  <log_format>eventchannel</log_format>
+  <query>Event/System[(EventID=4624 or EventID=4625 or EventID=4648 or EventID=4672 or EventID=4688)]</query>
+</localfile>
+<localfile>
+  <location>Microsoft-Windows-Sysmon/Operational</location>
+  <log_format>eventchannel</log_format>
+</localfile>
