@@ -1,0 +1,17 @@
+Return-Path: <billing@mailer-example.test>
+Received: from mailer-example.test (203.0.113.25)
+    by mx.lab.local with ESMTPS id LAB123
+    for <analyst@lab.local>; Tue, 07 Jul 2026 09:14:22 +0000
+Authentication-Results: mx.lab.local;
+    spf=fail smtp.mailfrom=mailer-example.test;
+    dkim=none;
+    dmarc=fail header.from=trustedbrand.example
+From: "Trusted Brand Billing" <billing@trustedbrand.example>
+Reply-To: support@free-mail-example.test
+To: analyst@lab.local
+Subject: Urgent: payment account suspended
+Date: Tue, 07 Jul 2026 09:13:40 +0000
+Message-ID: <20260707091340.12345@mailer-example.test>
+Content-Type: text/plain; charset=UTF-8
+
+Your payment account will be suspended today. Review it at https://login-example.test/account/reset and confirm your details.

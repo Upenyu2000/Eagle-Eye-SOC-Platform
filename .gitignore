@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Runtime data and secrets
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+logs/
+exports/
+reports/private/
+secrets/
+credentials/
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Potentially sensitive security evidence
+*.evtx
+*.pcap
+*.pcapng
+BloodHound/
+bloodhound-data/
+loot/
+evidence/raw/

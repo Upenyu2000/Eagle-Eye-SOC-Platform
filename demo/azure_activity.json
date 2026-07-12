@@ -1,0 +1,26 @@
+[
+  {
+    "TimeGenerated": "2026-07-12T13:00:00Z",
+    "OperationNameValue": "MICROSOFT.STORAGE/STORAGEACCOUNTS/WRITE",
+    "ActivityStatusValue": "Success",
+    "ResourceGroup": "rg-cloud-security-lab",
+    "ResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-cloud-security-lab/providers/Microsoft.Storage/storageAccounts/eagleeyelabstorage",
+    "Caller": "analyst@lab.local",
+    "CallerIpAddress": "203.0.113.10",
+    "Properties": {
+      "requestbody": "{\"properties\":{\"allowBlobPublicAccess\":true}}"
+    }
+  },
+  {
+    "TimeGenerated": "2026-07-12T13:01:00Z",
+    "OperationNameValue": "MICROSOFT.STORAGE/STORAGEACCOUNTS/BLOBSERVICES/CONTAINERS/WRITE",
+    "ActivityStatusValue": "Success",
+    "ResourceGroup": "rg-cloud-security-lab",
+    "ResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-cloud-security-lab/providers/Microsoft.Storage/storageAccounts/eagleeyelabstorage/blobServices/default/containers/public-lab",
+    "Caller": "analyst@lab.local",
+    "CallerIpAddress": "203.0.113.10",
+    "Properties": {
+      "requestbody": "{\"properties\":{\"publicAccess\":\"Blob\"}}"
+    }
+  }
+]
