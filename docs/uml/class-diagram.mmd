@@ -1,0 +1,71 @@
+classDiagram
+  class MainWindow {
+    +Database database
+    +SecretStore secrets
+    +QThreadPool thread_pool
+    +show_page(index)
+    +closeEvent(event)
+  }
+  class DashboardPage {
+    +refresh()
+    +load_demo_incidents()
+    +close_selected_incident()
+  }
+  class TelemetryPage {
+    +records
+    +result
+    +import_file()
+    +load_demo()
+    +run_analysis()
+    +create_incident()
+    +export_report()
+  }
+  class SiemPage
+  class ActiveDirectoryPage
+  class AzurePage {
+    +import_file()
+    +load_demo()
+    +run_analysis()
+    +preview_command()
+    +remediate()
+  }
+  class PhishingPage
+  class AutomationPage
+  class SettingsPage
+  class Database {
+    +add_incident(incident)
+    +list_incidents(limit)
+    +update_incident_status(id,status)
+    +dashboard_stats()
+    +log_activity(module,action,details)
+  }
+  class SecretStore
+  class Incident {
+    +module
+    +title
+    +severity
+    +status
+    +description
+    +evidence
+  }
+  class AnalysisResult {
+    +findings
+    +summary
+  }
+  MainWindow *-- DashboardPage
+  MainWindow *-- SiemPage
+  MainWindow *-- ActiveDirectoryPage
+  MainWindow *-- AzurePage
+  MainWindow *-- PhishingPage
+  MainWindow *-- AutomationPage
+  MainWindow *-- SettingsPage
+  MainWindow --> Database
+  MainWindow --> SecretStore
+  TelemetryPage <|-- SiemPage
+  TelemetryPage <|-- ActiveDirectoryPage
+  DashboardPage --> Database
+  TelemetryPage --> Database
+  AzurePage --> Database
+  Database --> Incident
+  TelemetryPage --> AnalysisResult
+  AzurePage --> AnalysisResult
